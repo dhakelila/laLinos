@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<style>
+	body {
+		background-color: #000;
+	}
+
+	.container {
+		position: absolute;
+		top: 10%;
+		left: 10%;
+		right: 10%;
+		bottom: 10%;
+	}
+
+	svg {
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		width: 100%;
+		height: 100%;
+	}
+
+</style>
+<body>
+	<div class="container">
+	</div>
+
+	<script type="text/javascript" src="http://mbostock.github.com/d3/d3.js?2.5.0"></script>
+	<script>
+
+		var viewBox = "0 0 700 300";
+
+		var svg = d3.select(".container")
+		      .append("svg")
+		      .attr("viewBox", viewBox)
+		      .attr("xmlns", "http://www.w3.org/2000/svg");
+
+		    var line = "M0,42.53798695281148Q56,126.2580279065296,70,148.61440922133625C91,182.1489811935462,119,270.2032184796408,140,266.1018001008779S189.00000000000003,131.77317558648065,210.00000000000003,121.27162002958357S259,189.1561349122785,280,196.09142972156405S329,194.30228363070637,350,167.50691875815392S399.00000000000006,11.49389789160341,420.00000000000006,17.45566390454769S469.00000000000006,176.9944262439385,490.00000000000006,207.2520255111158S539,212.86765517666936,560,219.17299235239625S609,279.9508507004939,630,249.2876066826284Q644,228.8454440040514,700,14.751365566626191";
+
+		    var path = svg.append("path")
+		      .attr("d", line)
+		      .attr("stroke", "#FFF")
+		      .attr("stroke-width", "2")
+		      .attr("fill", "none");
+
+		    var totalLength = path.node().getTotalLength();
+
+		    path
+		      .attr("stroke-dasharray", totalLength + " " + totalLength)
+		      .attr("stroke-dashoffset", totalLength)
+		      .transition()
+		        .duration(2000)
+		        .ease("linear")
+		        .attr("stroke-dashoffset", 0);
+		    
+
+	</script>
+</body>
+</html>
