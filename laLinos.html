@@ -48,7 +48,7 @@
 			.data(laLinos)
 			.enter()
 			.append('g')
-			.attr('d', function(laLinos) {
+			.attr('d', function(laLinos, i) {
 				var path = svg.append("path")
 				  .attr("d", laLinos)
 				  .attr("stroke", "#FFF")
@@ -61,7 +61,8 @@
 				  .attr("stroke-dasharray", totalLength + " " + totalLength)
 				  .attr("stroke-dashoffset", totalLength)
 				  .transition()
-				    .duration(2000)
+				  	.delay(i*1500 - 1000)
+				    .duration(1500)
 				    .ease("linear")
 				    .attr("stroke-dashoffset", 0);
 			});
